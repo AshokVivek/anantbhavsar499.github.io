@@ -1,0 +1,340 @@
+<html>
+<title>
+Calculator
+</title>
+</head>
+<style>
+body{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	background-repeat:no-repeat;
+	height:auto;
+	width:100%;
+	background-image:url(calculator.png);
+	background-size:contain;
+	}
+.btn-group .button {
+    background-color: #0000ff; 
+    border: none;
+	width:17%;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+	align:center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vw;
+    cursor: pointer;
+    float: left;
+	opacity:2;
+	margin: 4px 2px;
+}
+
+.btn-group .button:hover {
+    background-color: black;
+	color:#0000ff ;
+	border:2px solid #0000ff;
+}
+screen{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:50px;
+	width:500px;
+	position:relative;
+	right:270px;
+	top:20px;
+	background-color:#ffffff;
+    border-style:ridge;
+
+	font-family:"Times New Roman";
+
+}
+box{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	height:650px;
+	width:800px;
+	position:relative;
+	right:0px;
+	top:-5px;
+	background-color:black;
+    border-style:ridge;
+	text-align:center;
+	font-family:"Times New Roman";
+
+}
+</style>
+<script type="text/javascript">
+var exp=[];
+var str1;
+var count;
+count=-1;
+function display(num){
+	var str;
+	
+	count=count+1;
+	
+	if(num=='del'){
+		exp.pop();
+	}
+	
+	else if(num=='clr'){                          
+		exp=[];
+		return exp;
+	}
+	
+	else if(num=='='){                     //When '=' is pressed
+		var valid=checkexp(str1);         //Check for a valid expression
+		if(valid===0){
+			return("Invalid Expression");
+		}
+		else{
+			var res;
+			res =evaluate(exp);             //Evaluate the expression
+			exp=[];
+			exp.push(res);
+			str1="";
+			str="";
+			if(Number.isNaN(res)){
+				return "Invalid Expression";
+			}
+			else{
+				return res;
+			}
+		}
+		
+	}
+	
+	else if(typeof(exp[exp.length-1])=='number'&&typeof(num)=='number'){
+		exp[exp.length-1]=(exp[exp.length-1]*10)+num;
+		
+	}
+	
+	
+	else{
+		exp.push(num);
+	}
+	for (var i = 0; i < exp.length; i++) {
+		str+=exp[i]+"";
+	}
+	str=str.slice(9);
+	str1=str;
+	
+	return str1;
+}
+
+//Def of checkexp function
+function checkexp(st){
+	var arr=[];
+
+	for(var i=0;i<st.length;i++){
+		if(st[i]=="("){
+			arr.push("(");
+		}
+		else if(st[i]==")"){
+			if(arr.length>0){
+				arr.pop();
+			}
+			else{
+				return 0;
+			}
+		}
+	}
+	if(arr.length===0){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+
+//Def of evaluate function
+function evaluate(exp){
+	
+	if(exp.length==1){
+		return exp[0];
+	}
+	
+	//for calculating HCF
+	if(exp[0]=="HCF("){
+		var hc=calcHCF(exp[1],exp[3]);
+		return hc;
+	}
+	
+	//for calculating LCM
+	if(exp[0]=="LCM("){
+		var lc=calcLCM(exp[1],exp[3]);
+		return lc;
+	}	
+	
+	//for calculating Square
+	if(exp[0]=="sq("){
+		var sq=exp[1]*exp[1];
+		return sq;
+	}
+
+	//for calculating Square Root
+	if(exp[0]=="sqrt("){
+		var sqr=Math.sqrt(exp[1]);
+		return sqr;
+	}
+	
+	//for calculating cosine
+	if(exp[0]=="cos("){
+		var cs=Math.cos(exp[1]);
+		return cs;
+	}
+	
+	//for calculating sine
+	if(exp[0]=="sin("){
+		var sn=Math.sin(exp[1]);
+		return sn;
+	}
+	
+	//for calculating tangent
+	if(exp[0]=="tan("){
+		var tn=Math.tan(exp[1]);
+		return tn;
+	}
+
+	//for calculating arc cosine
+	if(exp[0]=="arccos("){
+		var acs=Math.acos(exp[1]);
+		return acs;
+	}
+	
+	//for calculating arc sine
+	if(exp[0]=="arcsin("){
+		var asn=Math.asin(exp[1]);
+		return asn;
+	}
+	
+	//for calculating arc tangent
+	if(exp[0]=="arctan("){
+		var atn=Math.atan(exp[1]);
+		return atn;
+	}
+	
+	//for calculating natural logarithm
+	if(exp[0]=="ln("){
+		var ln=Math.log(exp[1]);
+		return ln;
+	}
+	
+	
+	//for calculating Factorial
+	if(exp[0]=='fact('){
+		var fact=factorial(exp[1]);
+		return fact;
+	}
+	
+	else{
+		var result=eval(str1)
+		return result;
+		}
+}
+
+//Def of function to calculate HCF
+function calcHCF(num1,num2){
+
+	var x=Math.min(num1,num2);
+	if(num1==num2){
+		return num1;}
+	if(num1>num2&&num1%num2===0){
+		return num2;
+	}
+	else if(num2>num1&&num2%num1===0){
+		return num1;
+	}
+	var x1=1;
+	for(var i=2;i<x;i++){
+		if(num1%i===0&&num2%i===0){
+			x1=i;
+		}
+	}
+	
+	return x1;
+}
+
+//Def of function to calculate LCM
+function calcLCM(num1,num2){
+	var x=Math.max(num1,num2);
+	if(num1==num2){
+		return num1;}
+	if(num1>num2&&num1%num2===0){
+		return num1;
+	}
+	else if(num2>num1&&num2%num1===0){
+		return num2;
+	}
+	else{
+		for(var i=x+1;i<=num1*num2;i++){
+			if(i%num1===0&&i%num2===0){
+				var x1;
+				
+				return x1;
+			}
+		}
+	}
+}
+	
+//Def of function to calculate factorial
+function factorial(num){
+	if(num>=0){
+		if(num==1||num==0){
+			return 1;
+		}
+		else{
+			return num*factorial(num-1);
+		}
+	}
+	else{
+		return -Infinity;
+	}
+}
+</script>
+<body>
+<box>
+<div style="position:relative;left:270px;">
+<screen id="demo"></screen><br>
+<div class="btn-group" style="position:relative;right:150px;top:20px;">
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(9)">9</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(8)">8</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(7)">7</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(6)">6</button><br><br><br><br>
+<div style="position:relative;top:-20px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(5)">5</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(4)">4</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(3)">3</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(2)">2</button></div><br><br><br><br>
+<div style="position:relative;top:-40px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(1)">1</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(0)">0</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('.')">.</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('+')">+</button></div><br><br><br><br>
+<div style="position:relative;top:-60px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('-')">-</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('*')">*</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('/')">/</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('LCM\(')">LCM</button></div><br><br><br><br>
+<div style="position:relative;top:-80px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('HCF\(')">HCF</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('\(')">(</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('\)')">)</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(',')">,</button></div><br><br><br><br>
+<div style="position:relative;top:-100px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('cos\(')">cos</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sin\(')">sin</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('tan\(')">tan</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arccos\(')">arccos</button></div><br><br><br><br>
+<div style="position:relative;top:-120px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arcsin\(')">arcsin</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arctan\(')">arctan</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('ln\(')">ln</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sq\(')">sq</button><div><br><br><br><br>
+<div style="position:relative;top:-20px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sqrt\(')">sqrt</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('fact\(')">fact</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('clr')">clr</button>
+<button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('del')">del</button></div><br><br><br>
+<button type="button" class="button" style="position:relative;right:345px;top:-20px;" onclick="document.getElementById('demo').innerHTML = display('=')">=</button>
+</div>
+</div>
+</box>
+</body>
