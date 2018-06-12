@@ -30,7 +30,6 @@ body{
 	opacity:2;
 	margin: 4px 2px;
 }
-
 .btn-group .button:hover {
     background-color: black;
 	color:#0000ff ;
@@ -47,9 +46,7 @@ screen{
 	top:20px;
 	background-color:#ffffff;
     border-style:ridge;
-
 	font-family:"Times New Roman";
-
 }
 box{
 	display:block;
@@ -64,7 +61,6 @@ box{
     border-style:ridge;
 	text-align:center;
 	font-family:"Times New Roman";
-
 }
 </style>
 <script type="text/javascript">
@@ -125,11 +121,9 @@ function display(num){
 	
 	return str1;
 }
-
 //Def of checkexp function
 function checkexp(st){
 	var arr=[];
-
 	for(var i=0;i<st.length;i++){
 		if(st[i]=="("){
 			arr.push("(");
@@ -150,7 +144,6 @@ function checkexp(st){
 		return 0;
 	}
 }
-
 //Def of evaluate function
 function evaluate(exp){
 	
@@ -175,7 +168,6 @@ function evaluate(exp){
 		var sq=exp[1]*exp[1];
 		return sq;
 	}
-
 	//for calculating Square Root
 	if(exp[0]=="sqrt("){
 		var sqr=Math.sqrt(exp[1]);
@@ -199,7 +191,6 @@ function evaluate(exp){
 		var tn=Math.tan(exp[1]);
 		return tn;
 	}
-
 	//for calculating arc cosine
 	if(exp[0]=="arccos("){
 		var acs=Math.acos(exp[1]);
@@ -236,10 +227,8 @@ function evaluate(exp){
 		return result;
 		}
 }
-
 //Def of function to calculate HCF
 function calcHCF(num1,num2){
-
 	var x=Math.min(num1,num2);
 	if(num1==num2){
 		return num1;}
@@ -258,7 +247,6 @@ function calcHCF(num1,num2){
 	
 	return x1;
 }
-
 //Def of function to calculate LCM
 function calcLCM(num1,num2){
 	var x=Math.max(num1,num2);
@@ -305,35 +293,35 @@ function factorial(num){
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(8)">8</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(7)">7</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(6)">6</button><br><br><br><br>
-<div style="position:relative;top:0px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(5)">5</button>
+<div style="position:relative;top:-18px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(5)">5</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(4)">4</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(3)">3</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(2)">2</button></div><br><br><br><br>
-<div style="position:relative;top:0px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(1)">1</button>
+<div style="position:relative;top:-35px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(1)">1</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(0)">0</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('.')">.</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('+')">+</button></div><br><br><br><br>
-<div style="position:relative;top:0px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('-')">-</button>
+<div style="position:relative;top:-52px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('-')">-</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('*')">*</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('/')">/</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('LCM\(')">LCM</button></div><br><br><br><br>
-<div style="position:relative;top:0px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('HCF\(')">HCF</button>
+<div style="position:relative;top:-70px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('HCF\(')">HCF</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('\(')">(</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('\)')">)</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display(',')">,</button></div><br><br><br><br>
-<div style="position:relative;top:0px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('cos\(')">cos</button>
+<div style="position:relative;top:-86px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('cos\(')">cos</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sin\(')">sin</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('tan\(')">tan</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arccos\(')">arccos</button></div><br><br><br><br>
-<div style="position:relative;top:-110px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arcsin\(')">arcsin</button>
+<div style="position:relative;top:-104px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arcsin\(')">arcsin</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('arctan\(')">arctan</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('ln\(')">ln</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sq\(')">sq</button><div><br><br><br><br>
-<div style="position:relative;top:-20px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sqrt\(')">sqrt</button>
+<div style="position:relative;top:-18px;"><button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('sqrt\(')">sqrt</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('fact\(')">fact</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('clr')">clr</button>
 <button type="button" class="button" onclick="document.getElementById('demo').innerHTML = display('del')">del</button></div><br><br><br>
-<button type="button" class="button" style="position:relative;right:345px;top:-20px;" onclick="document.getElementById('demo').innerHTML = display('=')">=</button>
+<button type="button" class="button" style="position:relative;right:345px;top:-16px;" onclick="document.getElementById('demo').innerHTML = display('=')">=</button>
 </div>
 </div>
 </box>
